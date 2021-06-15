@@ -68,7 +68,7 @@ func main() {
 			}
 			results.Applications[index] = Application{
 				Name:        repo.Name,
-				CountSum:    len(result),
+				CountSum:    sumTotalCountForGrepResults(result),
 				GrepResults: result,
 			}
 		}(repo, i)
@@ -80,6 +80,14 @@ func main() {
 	if err := writeResult(ResultFilePath, results); err != nil {
 		log.Fatal("unable to save result: %w", err)
 	}
+}
+
+func sumTotalCountForGrepResults(grs []GrepResult) int {
+	var result int
+	for _, gr := range grs {
+		result += gr.Count
+	}
+	return result
 }
 
 func analyzeRepo(r Repository, searchWords, excludeDirs []string) ([]GrepResult, error) {
