@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"sort"
 	"strings"
 	"sync"
 )
@@ -76,9 +77,16 @@ func main() {
 
 	wg.Wait()
 	results.TotalCountSum = calculateTotalCountSum(results)
-	if err := writeResult(ResultFilePath, results); err != nil {
+	if err := writeResult(ResultFilePath, sortOnAppCountSumDesc(results)); err != nil {
 		log.Fatal("unable to save result: %w", err)
 	}
+}
+
+func sortOnAppCountSumDesc(result ResultFile) ResultFile {
+	sort.Slice(result.Applications, func(i, j int) bool {
+		return result.Applications[i].CountSum > result.Applications[j].CountSum
+	})
+	return result
 }
 
 func sumTotalCountForGrepResults(grs []GrepResult) int {
