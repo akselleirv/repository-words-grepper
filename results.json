@@ -1,0 +1,162 @@
+{
+ "total_applications": 2,
+ "search_words": [
+  "cmd",
+  "use"
+ ],
+ "total_count_sum": 35,
+ "applications": [
+  {
+   "name": "introspect-frontend",
+   "count_sum": 29,
+   "grep_results": [
+    {
+     "file_name": "README.md",
+     "count": 1
+    },
+    {
+     "file_name": "src/service-worker.ts",
+     "count": 5
+    },
+    {
+     "file_name": "src/components/Scoreboard/Scoreboard.tsx",
+     "count": 6
+    },
+    {
+     "file_name": "src/components/AnimatedCount/AnimatedCount.tsx",
+     "count": 2
+    },
+    {
+     "file_name": "src/components/QuestionResults/QuestionResults.tsx",
+     "count": 4
+    },
+    {
+     "file_name": "src/components/PlayerButton/PlayerButton.tsx",
+     "count": 2
+    },
+    {
+     "file_name": "src/components/ScoreboardView/ScoreboardView.tsx",
+     "count": 4
+    },
+    {
+     "file_name": "src/components/LobbyAction/LobbyAction.tsx",
+     "count": 7
+    },
+    {
+     "file_name": "src/views/Game/SelfVoting/SelfVoting.tsx",
+     "count": 2
+    },
+    {
+     "file_name": "src/views/Game/Game.tsx",
+     "count": 14
+    },
+    {
+     "file_name": "src/views/Game/QuestionVoting/QuestionVoting.tsx",
+     "count": 4
+    },
+    {
+     "file_name": "src/views/Lobby/Lobby.tsx",
+     "count": 4
+    },
+    {
+     "file_name": "src/views/CompositionOfGameAndLobby/CompositionOfGameAndLobby.tsx",
+     "count": 2
+    },
+    {
+     "file_name": "src/views/WelcomePage/WelcomePage.tsx",
+     "count": 5
+    },
+    {
+     "file_name": "src/views/WelcomePage/Welcome.test.tsx",
+     "count": 18
+    },
+    {
+     "file_name": "src/hooks/useEventListenerCallback/useEventListenerCallback.tsx",
+     "count": 6
+    },
+    {
+     "file_name": "src/hooks/useQuestions/useQuestions.tsx",
+     "count": 10
+    },
+    {
+     "file_name": "src/hooks/usePlayers/usePlayers.tsx",
+     "count": 7
+    },
+    {
+     "file_name": "src/hooks/useEventListener/useEventListener.tsx",
+     "count": 6
+    },
+    {
+     "file_name": "src/hooks/useEventSender/useEventSender.tsx",
+     "count": 3
+    },
+    {
+     "file_name": "src/App.tsx",
+     "count": 2
+    },
+    {
+     "file_name": "src/serviceWorkerRegistration.ts",
+     "count": 6
+    },
+    {
+     "file_name": "package.json",
+     "count": 2
+    },
+    {
+     "file_name": "public/robots.txt",
+     "count": 1
+    },
+    {
+     "file_name": "public/index.html",
+     "count": 5
+    },
+    {
+     "file_name": ".vscode/launch.json",
+     "count": 1
+    },
+    {
+     "file_name": "yarn.lock",
+     "count": 27
+    },
+    {
+     "file_name": "LICENSE",
+     "count": 11
+    },
+    {
+     "file_name": "Dockerfile",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "name": "introspect-backend",
+   "count_sum": 6,
+   "grep_results": [
+    {
+     "file_name": "game/game.go",
+     "count": 1
+    },
+    {
+     "file_name": "game/game_test.go",
+     "count": 5
+    },
+    {
+     "file_name": "question/question.go",
+     "count": 6
+    },
+    {
+     "file_name": ".gitignore",
+     "count": 1
+    },
+    {
+     "file_name": ".github/workflows/main.yml",
+     "count": 7
+    },
+    {
+     "file_name": "LICENSE",
+     "count": 11
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+  "search_words": [
+    "cmd",
+    "use"
+  ],
+  "exclude_dirs": [
+    ".git",
+    "node_modules",
+    "build"
+  ],
+  "repositories": [
+    {
+      "name": "introspect-frontend",
+      "url": "git@github.com:akselleirv/introspect-frontend.git",
+      "exclude_dirs": [
+        ".github"
+      ]
+    },
+    {
+      "name": "introspect-backend",
+      "url": "git@github.com:akselleirv/introspect-backend.git"
+    }
+  ]
+}
