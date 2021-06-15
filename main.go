@@ -8,7 +8,6 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"strconv"
 	"strings"
 	"sync"
 )
@@ -131,7 +130,7 @@ func loadConfig(filename string) (Config, error) {
 func grep(path string, searchWords, excludeDirs []string) ([]GrepResult, error) {
 	args := grepExcludeDirStr(excludeDirs)
 	args = append(args, searchWordsStr(searchWords)...)
-	args = append(args, "--recursive", "--ignore-case", "--count", path)
+	args = append(args, "--recursive", "--ignore-case", "--only-matching", path)
 
 	grepCmd := exec.Command("grep", args...)
 	log.Println("running command: " + strings.Join(grepCmd.Args, " "))
@@ -165,34 +164,38 @@ func grepExcludeDirStr(excludeDirs []string) []string {
 	return result
 }
 
-func parseGrepOutput(out, pathGrepped string) []GrepResult {
+func parseGrepOutput(out, basePath string) []GrepResult {
 	var results []GrepResult
-	for _, res := range strings.Split(out, "\n") {
-		if grStr := strings.Split(res, ":"); grStr[0] != "" && grStr[1] != "" {
-			if isNoMatches(grStr[1]) {
-				continue
-			}
-			count, err := strconv.Atoi(grStr[1])
-			if err != nil {
-				log.Println(err)
-				return nil
-			}
+	pathCounts := make(map[string]int)
 
-			results = append(results, GrepResult{
-				FileName: removeBasePath(grStr[0], pathGrepped),
-				Count:    count,
-			})
+	for _, line := range strings.Split(out, "\n") {
+		if path, searchWord := splitOutputLine(line); path != "" && searchWord != "" {
+			pathCounts[removeBasePath(path, basePath)] += 1
 		}
 	}
+
+	for path, count := range pathCounts {
+		results = append(results, GrepResult{
+			FileName: path,
+			Count:    count,
+		})
+	}
+
 	return results
 }
 
-func isNoMatches(count string) bool {
-	return count == "0"
+// splitOutputLine splits the output: <path>:<search-word>
+func splitOutputLine(grepLine string) (string, string) {
+	split := strings.Split(grepLine, ":")
+	if len(split) == 2 {
+		return split[0], split[1]
+	}
+
+	return "", ""
 }
 
-func removeBasePath(name, basePath string) string {
-	if cleanName := strings.Split(name, basePath+"/"); len(cleanName) >= 1 {
+func removeBasePath(path, basePath string) string {
+	if cleanName := strings.Split(path, basePath+"/"); len(cleanName) >= 1 {
 		return cleanName[1]
 	}
 	return ""
